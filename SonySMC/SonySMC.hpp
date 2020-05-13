@@ -1,12 +1,12 @@
 //
-//  AsusSMC.hpp
-//  AsusSMC
+//  SonySMC.hpp
+//  SonySMC
 //
 //  Copyright © 2018-2019 Le Bao Hiep. All rights reserved.
 //
 
-#ifndef _AsusSMC_hpp
-#define _AsusSMC_hpp
+#ifndef _SonySMC_hpp
+#define _SonySMC_hpp
 
 #include <IOKit/IOTimerEventSource.h>
 #include <IOKit/IOCommandGate.h>
@@ -39,9 +39,9 @@ struct guid_block {
 #define ACPI_WMI_STRING      0x4    /* GUID takes & returns a string */
 #define ACPI_WMI_EVENT       0x8    /* GUID is an event */
 
-#define AsusSMCEventCode 0x8102
+#define SonySMCEventCode 0x8102
 
-#define kAsusKeyboardBacklight "asus-keyboard-backlight"
+#define kSonyKeyboardBacklight "sony-keyboard-backlight"
 
 const UInt8 NOTIFY_BRIGHTNESS_UP_MIN = 0x10;
 const UInt8 NOTIFY_BRIGHTNESS_UP_MAX = 0x1F;
@@ -63,8 +63,8 @@ enum {
     kevTouchpad = 4,
 };
 
-class AsusSMC : public IOService {
-    OSDeclareDefaultStructors(AsusSMC)
+class SonySMC : public IOService {
+    OSDeclareDefaultStructors(SonySMC)
 
     /**
      *  Registered plugin instance
@@ -91,7 +91,7 @@ protected:
     OSDictionary *properties {nullptr};
 
     /**
-     *  Asus ATK device
+     *  Sony ATK device
      */
     IOACPIPlatformDevice *atkDevice {nullptr};
 
@@ -250,7 +250,7 @@ protected:
     /**
      *  Submit the keys to received VirtualSMC service.
      *
-     *  @param sensors   AsusSMC service
+     *  @param sensors   SonySMC service
      *  @param refCon    reference
      *  @param vsmc      VirtualSMC service
      *  @param notifier  created notifier
@@ -291,10 +291,10 @@ private:
     int parse_wdg(OSDictionary *dict);
 
     OSDictionary *getDictByUUID(const char *guid);
-    
+
     void subscribePowerEvents(IOService *provider);
-    
+
     virtual IOReturn setPowerState(unsigned long powerStateOrdinal, IOService* whatDevice);
 };
 
-#endif //_AsusSMC_hpp
+#endif //_SonySMC_hpp

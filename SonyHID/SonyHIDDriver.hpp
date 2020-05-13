@@ -1,12 +1,12 @@
 //
-//  AsusHIDDriver.hpp
-//  AsusHID
+//  SonyHIDDriver.hpp
+//  SonyHID
 //
 //  Copyright © 2019 Le Bao Hiep. All rights reserved.
 //
 
-#ifndef AsusHIDDriver_hpp
-#define AsusHIDDriver_hpp
+#ifndef SonyHIDDriver_hpp
+#define SonyHIDDriver_hpp
 
 #include <IOKit/hidevent/IOHIDEventDriver.h>
 #include <IOKit/IOBufferMemoryDescriptor.h>
@@ -25,16 +25,16 @@
         AbsoluteTime_to_scalar(t2)? (int)-1 : 0))
 
 enum {
-    kAddAsusHIDDriver = iokit_vendor_specific_msg(201),
-    kDelAsusHIDDriver = iokit_vendor_specific_msg(202),
+    kAddSonyHIDDriver = iokit_vendor_specific_msg(201),
+    kDelSonyHIDDriver = iokit_vendor_specific_msg(202),
     kSleep = iokit_vendor_specific_msg(203),
     kAirplaneMode = iokit_vendor_specific_msg(204),
     kTouchpadToggle = iokit_vendor_specific_msg(205),
     kDisplayOff = iokit_vendor_specific_msg(206),
 };
 
-class AsusHIDDriver : public IOHIDEventDriver {
-    OSDeclareDefaultStructors(AsusHIDDriver)
+class SonyHIDDriver : public IOHIDEventDriver {
+    OSDeclareDefaultStructors(SonyHIDDriver)
 
 public:
     bool start(IOService *provider) override;
@@ -45,7 +45,7 @@ public:
     void setKeyboardBacklight(uint8_t val);
 
 private:
-    IOService *_asusSMC {nullptr};
+    IOService *_sonySMC {nullptr};
     IOHIDInterface *hid_interface {nullptr};
 
     uint8_t kbd_func = 0;
@@ -53,9 +53,9 @@ private:
     OSArray *customKeyboardElements {nullptr};
     void parseCustomKeyboardElements(OSArray *elementArray);
 
-    // Ported from hid-asus driver
-    void asus_kbd_init();
-    void asus_kbd_backlight_set(uint8_t val);
-    void asus_kbd_get_functions(uint8_t *kbd_func);
+    // Ported from hid-sony driver
+    void sony_kbd_init();
+    void sony_kbd_backlight_set(uint8_t val);
+    void sony_kbd_get_functions(uint8_t *kbd_func);
 };
-#endif /* AsusHIDDriver_hpp */
+#endif /* SonyHIDDriver_hpp */

@@ -16,7 +16,7 @@ public:
     // ----------------------------------------
 
     OSString *newManufacturerString() const override {
-        return OSString::withCString("ASUSTeK Computer Inc.");
+        return OSString::withCString("Sony Corporation");
     }
 
     OSString *newProductString() const override {
@@ -24,7 +24,7 @@ public:
     }
 
     OSString *newSerialNumberString() const override {
-        return OSString::withCString("ASUSSMC2019");
+        return OSString::withCString("SONYSMC2019");
     }
 
     // ----------------------------------------

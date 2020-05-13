@@ -5,10 +5,10 @@
 	<key>KeepAlive</key>
 	<true/>
 	<key>Label</key>
-	<string>com.hieplpvip.AsusSMCDaemon</string>
+	<string>org.warexify.SonySMCDaemon</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/AsusSMCDaemon</string>
+		<string>/usr/local/bin/SonySMCDaemon</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

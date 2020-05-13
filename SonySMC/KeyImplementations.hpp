@@ -1,6 +1,6 @@
 //
 //  KeyImplementations.hpp
-//  AsusSMC
+//  SonySMC
 //
 //  Copyright © 2018-2019 Le Bao Hiep. All rights reserved.
 //
@@ -10,7 +10,7 @@
 
 #include <IOKit/acpi/IOACPIPlatformDevice.h>
 #include <VirtualSMCSDK/kern_vsmcapi.hpp>
-#include "AsusHIDDriver.hpp"
+#include "SonyHIDDriver.hpp"
 
 /**
  *  Key name definitions for VirtualSMC

@@ -1,11 +1,11 @@
 //
-//  AsusSMC.cpp
-//  AsusSMC
+//  SonySMC.cpp
+//  SonySMC
 //
 //  Copyright © 2018-2019 Le Bao Hiep. All rights reserved.
 //
 
-#include "AsusSMC.hpp"
+#include "SonySMC.hpp"
 
 bool ADDPR(debugEnabled) = true;
 uint32_t ADDPR(debugPrintDelay) = 0;
@@ -14,7 +14,7 @@ uint32_t ADDPR(debugPrintDelay) = 0;
 #pragma mark WMI functions ported from Linux
 #pragma mark -
 
-int AsusSMC::wmi_data2Str(const char *in, char *out) {
+int SonySMC::wmi_data2Str(const char *in, char *out) {
     int i;
 
     for (i = 3; i >= 0; i--)
@@ -38,7 +38,7 @@ int AsusSMC::wmi_data2Str(const char *in, char *out) {
     return 0;
 }
 
-OSString *AsusSMC::flagsToStr(UInt8 flags) {
+OSString *SonySMC::flagsToStr(UInt8 flags) {
     char str[80];
     char *pos = str;
     if (flags != 0) {
@@ -68,7 +68,7 @@ OSString *AsusSMC::flagsToStr(UInt8 flags) {
     return (OSString::withCString(str));
 }
 
-void AsusSMC::wmi_wdg2reg(struct guid_block *g, OSArray *array, OSArray *dataArray) {
+void SonySMC::wmi_wdg2reg(struct guid_block *g, OSArray *array, OSArray *dataArray) {
     char guid_string[37];
     char object_id_string[3];
     OSDictionary *dict = OSDictionary::withCapacity(6);
@@ -91,7 +91,7 @@ void AsusSMC::wmi_wdg2reg(struct guid_block *g, OSArray *array, OSArray *dataArr
     array->setObject(dict);
 }
 
-OSDictionary *AsusSMC::readDataBlock(char *str) {
+OSDictionary *SonySMC::readDataBlock(char *str) {
     OSDictionary *dict = OSDictionary::withCapacity(1);
 
     char name[5];
@@ -113,7 +113,7 @@ OSDictionary *AsusSMC::readDataBlock(char *str) {
     return dict;
 }
 
-int AsusSMC::parse_wdg(OSDictionary *dict) {
+int SonySMC::parse_wdg(OSDictionary *dict) {
     OSObject *wdg;
     if (atkDevice->evaluateObject("_WDG", &wdg) != kIOReturnSuccess) {
         SYSLOG("guid", "No object of method _WDG");
@@ -138,7 +138,7 @@ int AsusSMC::parse_wdg(OSDictionary *dict) {
     return 0;
 }
 
-OSDictionary *AsusSMC::getDictByUUID(const char *guid) {
+OSDictionary *SonySMC::getDictByUUID(const char *guid) {
     OSArray *array = OSDynamicCast(OSArray, properties->getObject("WDG"));
     if (!array)
         return NULL;
@@ -161,7 +161,7 @@ OSDictionary *AsusSMC::getDictByUUID(const char *guid) {
 
 #define super IOService
 
-OSDefineMetaClassAndStructors(AsusSMC, IOService)
+OSDefineMetaClassAndStructors(SonySMC, IOService)
 
 
 #define kIOPMPowerOff                       0
@@ -172,7 +172,7 @@ static IOPMPowerState powerStates[kNumberOfStates] = {
    {1, kIOPMPowerOn, kIOPMPowerOn, kIOPMPowerOn, 0, 0, 0, 0, 0, 0, 0, 0}
 };
 
-IOReturn AsusSMC::setPowerState(unsigned long powerStateOrdinal, IOService * whatDevice) {
+IOReturn SonySMC::setPowerState(unsigned long powerStateOrdinal, IOService * whatDevice) {
     if (powerStateOrdinal == kIOPMPowerOff) {
         DBGLOG("atk", "Power off");
         /**
@@ -187,30 +187,30 @@ IOReturn AsusSMC::setPowerState(unsigned long powerStateOrdinal, IOService * wha
     return kIOPMAckImplied;
 }
 
-void AsusSMC::subscribePowerEvents(IOService *provider) {
+void SonySMC::subscribePowerEvents(IOService *provider) {
     DBGLOG("atk", "subscribe to PM events");
     PMinit();
     provider->joinPMtree(this);
     registerPowerDriver(this, powerStates, kNumberOfStates);
 }
 
-bool AsusSMC::init(OSDictionary *dict) {
+bool SonySMC::init(OSDictionary *dict) {
     _notificationServices = OSSet::withCapacity(1);
     _hidDrivers = OSSet::withCapacity(1);
 
-    kev.setVendorID("com.hieplpvip");
-    kev.setEventCode(AsusSMCEventCode);
+    kev.setVendorID("org.warexify");
+    kev.setEventCode(SonySMCEventCode);
 
     atomic_init(&currentLux, 0);
 
     bool result = super::init(dict);
     properties = dict;
 
-    DBGLOG("atk", "AsusSMC Inited");
+    DBGLOG("atk", "SonySMC Inited");
     return result;
 }
 
-IOService *AsusSMC::probe(IOService *provider, SInt32 *score) {
+IOService *SonySMC::probe(IOService *provider, SInt32 *score) {
     IOService *ret = NULL;
 
     if (!super::probe(provider, score))
@@ -236,7 +236,7 @@ IOService *AsusSMC::probe(IOService *provider, SInt32 *score) {
     return ret;
 }
 
-bool AsusSMC::start(IOService *provider) {
+bool SonySMC::start(IOService *provider) {
     DBGLOG("atk", "start is called");
 
     if (!provider || !super::start(provider)) {
@@ -283,23 +283,23 @@ bool AsusSMC::start(IOService *provider) {
         subscribePowerEvents(provider);
     }
 
-    setProperty("AsusSMCCore", true);
+    setProperty("SonySMCCore", true);
     setProperty("IsTouchpadEnabled", true);
     setProperty("Copyright", "Copyright © 2018-2019 Le Bao Hiep. All rights reserved.");
 
     extern kmod_info_t kmod_info;
-    setProperty("AsusSMC-Version", kmod_info.version);
+    setProperty("SonySMC-Version", kmod_info.version);
 #ifdef DEBUG
-    setProperty("AsusSMC-Build", "Debug");
+    setProperty("SonySMC-Build", "Debug");
 #else
-    setProperty("AsusSMC-Build", "Release");
+    setProperty("SonySMC-Build", "Release");
 #endif
     return true;
 }
 
-void AsusSMC::stop(IOService *provider) {
+void SonySMC::stop(IOService *provider) {
     DBGLOG("atk", "stop is called");
-    
+
     if (version_major > 18) {
         DBGLOG("atk", "stop PM hook");
         PMstop();
@@ -331,10 +331,10 @@ void AsusSMC::stop(IOService *provider) {
 }
 
 #pragma mark -
-#pragma mark AsusSMC Methods
+#pragma mark SonySMC Methods
 #pragma mark -
 
-IOReturn AsusSMC::message(UInt32 type, IOService *provider, void *argument) {
+IOReturn SonySMC::message(UInt32 type, IOService *provider, void *argument) {
     switch (type) {
         case kIOACPIMessageDeviceNotification:
             if (directACPImessaging) {
@@ -348,12 +348,12 @@ IOReturn AsusSMC::message(UInt32 type, IOService *provider, void *argument) {
                 handleMessage(res);
             }
             break;
-        case kAddAsusHIDDriver:
+        case kAddSonyHIDDriver:
             DBGLOG("atk", "Connected with HID driver");
             setProperty("HIDKeyboardExist", true);
             _hidDrivers->setObject(provider);
             break;
-        case kDelAsusHIDDriver:
+        case kDelSonyHIDDriver:
             DBGLOG("atk", "Disconnected with HID driver");
             _hidDrivers->removeObject(provider);
             break;
@@ -376,7 +376,7 @@ IOReturn AsusSMC::message(UInt32 type, IOService *provider, void *argument) {
     return kIOReturnSuccess;
 }
 
-void AsusSMC::handleMessage(int code) {
+void SonySMC::handleMessage(int code) {
     // Processing the code
     switch (code) {
         case 0x57: // AC disconnected
@@ -477,9 +477,9 @@ void AsusSMC::handleMessage(int code) {
     DBGLOG("atk", "Received key %d(0x%x)", code, code);
 }
 
-void AsusSMC::saveKBBacklightToNVRAM(uint16_t val) {
+void SonySMC::saveKBBacklightToNVRAM(uint16_t val) {
     if (IORegistryEntry* nvram = OSDynamicCast(IORegistryEntry, fromPath("/options", gIODTPlane))) {
-        if (const OSSymbol* symbol = OSSymbol::withCString(kAsusKeyboardBacklight)) {
+        if (const OSSymbol* symbol = OSSymbol::withCString(kSonyKeyboardBacklight)) {
             if (OSData* number = OSData::withBytes(&val, sizeof(val))) {
                 if (!nvram->setProperty(symbol, number)) DBGLOG("atk", "nvram->setProperty failed");
                 number->release();
@@ -490,7 +490,7 @@ void AsusSMC::saveKBBacklightToNVRAM(uint16_t val) {
     }
 }
 
-uint16_t AsusSMC::readKBBacklightFromNVRAM() {
+uint16_t SonySMC::readKBBacklightFromNVRAM() {
     uint16_t val = 16;
 
     OSDictionary* matching = serviceMatching("IODTNVRAM");
@@ -503,7 +503,7 @@ uint16_t AsusSMC::readKBBacklightFromNVRAM() {
         if (OSSerialize* serial = OSSerialize::withCapacity(0)) {
             nvram->serializeProperties(serial);
             if (OSDictionary* props = OSDynamicCast(OSDictionary, OSUnserializeXML(serial->text()))) {
-                if (OSData* number = OSDynamicCast(OSData, props->getObject(kAsusKeyboardBacklight))) {
+                if (OSData* number = OSDynamicCast(OSData, props->getObject(kSonyKeyboardBacklight))) {
                     unsigned l = number->getLength();
                     if (l <= sizeof(val)) memcpy(&val, number->getBytesNoCopy(), l);
                     DBGLOG("atk", "Keyboard backlight value from NVRAM: %d", val);
@@ -519,7 +519,7 @@ uint16_t AsusSMC::readKBBacklightFromNVRAM() {
     return val;
 }
 
-void AsusSMC::setKBLLevel(uint16_t val, bool badge, bool save) {
+void SonySMC::setKBLLevel(uint16_t val, bool badge, bool save) {
     if (badge) kev.sendMessage(kevKeyboardBacklight, val, 16);
     if (save) saveKBBacklightToNVRAM(val);
     val = min(val * 16, 255);
@@ -528,15 +528,15 @@ void AsusSMC::setKBLLevel(uint16_t val, bool badge, bool save) {
     arg->release();
 }
 
-void AsusSMC::letSleep() {
+void SonySMC::letSleep() {
     kev.sendMessage(kevSleep, 0, 0);
 }
 
-void AsusSMC::toggleAirplaneMode() {
+void SonySMC::toggleAirplaneMode() {
     kev.sendMessage(kevAirplaneMode, 0, 0);
 }
 
-void AsusSMC::toggleTouchpad() {
+void SonySMC::toggleTouchpad() {
     touchpadEnabled = !touchpadEnabled;
     if (touchpadEnabled) {
         setProperty("IsTouchpadEnabled", true);
@@ -549,7 +549,7 @@ void AsusSMC::toggleTouchpad() {
     dispatchMessage(kKeyboardSetTouchStatus, &touchpadEnabled);
 }
 
-void AsusSMC::displayOff() {
+void SonySMC::displayOff() {
     if (isPanelBackLightOn) {
         // Read Panel brigthness value to restore later with backlight toggle
         readPanelBrightnessValue();
@@ -562,7 +562,7 @@ void AsusSMC::displayOff() {
     isPanelBackLightOn = !isPanelBackLightOn;
 }
 
-void AsusSMC::checkATK() {
+void SonySMC::checkATK() {
     // Check direct ACPI messaging support
     if (atkDevice->validateObject("DMES") == kIOReturnSuccess) {
         DBGLOG("atk", "Direct ACPI message is supported");
@@ -592,7 +592,7 @@ void AsusSMC::checkATK() {
     }
 }
 
-void AsusSMC::toggleALS(bool state) {
+void SonySMC::toggleALS(bool state) {
     UInt32 res;
     OSNumber *arg = OSNumber::withNumber(state, sizeof(state) * 8);
     if (atkDevice->evaluateInteger("ALSC", &res, (OSObject**)&arg, 1) == kIOReturnSuccess)
@@ -603,7 +603,7 @@ void AsusSMC::toggleALS(bool state) {
     arg->release();
 }
 
-int AsusSMC::checkBacklightEntry() {
+int SonySMC::checkBacklightEntry() {
     if (IORegistryEntry *bkl = IORegistryEntry::fromPath(backlightEntry)) {
         OSSafeReleaseNULL(bkl);
         return 1;
@@ -613,7 +613,7 @@ int AsusSMC::checkBacklightEntry() {
     }
 }
 
-int AsusSMC::findBacklightEntry() {
+int SonySMC::findBacklightEntry() {
     // Check for previous found backlight entry
     if (checkBacklightEntry())
         return 1;
@@ -656,7 +656,7 @@ int AsusSMC::findBacklightEntry() {
     return 0;
 }
 
-void AsusSMC::readPanelBrightnessValue() {
+void SonySMC::readPanelBrightnessValue() {
     if (!findBacklightEntry()) {
         DBGLOG("atk", "GPU device not found");
         return;
@@ -687,7 +687,7 @@ void AsusSMC::readPanelBrightnessValue() {
 #pragma mark VirtualKeyboard
 #pragma mark -
 
-void AsusSMC::initVirtualKeyboard() {
+void SonySMC::initVirtualKeyboard() {
     _virtualKBrd = new VirtualHIDKeyboard;
 
     if (!_virtualKBrd || !_virtualKBrd->init() || !_virtualKBrd->attach(this) || !_virtualKBrd->start(this)) {
@@ -698,7 +698,7 @@ void AsusSMC::initVirtualKeyboard() {
     }
 }
 
-IOReturn AsusSMC::postKeyboardInputReport(const void *report, uint32_t reportSize) {
+IOReturn SonySMC::postKeyboardInputReport(const void *report, uint32_t reportSize) {
     IOReturn result = kIOReturnError;
 
     if (!report || reportSize == 0) {
@@ -715,7 +715,7 @@ IOReturn AsusSMC::postKeyboardInputReport(const void *report, uint32_t reportSiz
     return result;
 }
 
-void AsusSMC::dispatchCSMRReport(int code, int loop) {
+void SonySMC::dispatchCSMRReport(int code, int loop) {
     DBGLOG("atk", "Dispatched key %d(0x%x), loop %d time(s)", code, code, loop);
     while (loop--) {
         csmrreport.keys.insert(code);
@@ -725,7 +725,7 @@ void AsusSMC::dispatchCSMRReport(int code, int loop) {
     }
 }
 
-void AsusSMC::dispatchTCReport(int code, int loop) {
+void SonySMC::dispatchTCReport(int code, int loop) {
     DBGLOG("atk", "Dispatched key %d(0x%x), loop %d time(s)", code, code, loop);
     while (loop--) {
         tcreport.keys.insert(code);
@@ -739,11 +739,11 @@ void AsusSMC::dispatchTCReport(int code, int loop) {
 #pragma mark Notification methods
 #pragma mark -
 
-void AsusSMC::registerNotifications() {
+void SonySMC::registerNotifications() {
     auto *key = OSSymbol::withCString(kDeliverNotifications);
     auto *propertyMatch = propertyMatching(key, kOSBooleanTrue);
 
-    IOServiceMatchingNotificationHandler notificationHandler = OSMemberFunctionCast(IOServiceMatchingNotificationHandler, this, &AsusSMC::notificationHandler);
+    IOServiceMatchingNotificationHandler notificationHandler = OSMemberFunctionCast(IOServiceMatchingNotificationHandler, this, &SonySMC::notificationHandler);
 
     _publishNotify = addMatchingNotification(gIOFirstPublishNotification,
                                              propertyMatch,
@@ -761,7 +761,7 @@ void AsusSMC::registerNotifications() {
     propertyMatch->release();
 }
 
-void AsusSMC::notificationHandlerGated(IOService *newService, IONotifier *notifier) {
+void SonySMC::notificationHandlerGated(IOService *newService, IONotifier *notifier) {
     if (notifier == _publishNotify) {
         SYSLOG("notify", "Notification consumer published: %s", newService->getName());
         _notificationServices->setObject(newService);
@@ -773,12 +773,12 @@ void AsusSMC::notificationHandlerGated(IOService *newService, IONotifier *notifi
     }
 }
 
-bool AsusSMC::notificationHandler(void *refCon, IOService *newService, IONotifier *notifier) {
-    command_gate->runAction(OSMemberFunctionCast(IOCommandGate::Action, this, &AsusSMC::notificationHandlerGated), newService, notifier);
+bool SonySMC::notificationHandler(void *refCon, IOService *newService, IONotifier *notifier) {
+    command_gate->runAction(OSMemberFunctionCast(IOCommandGate::Action, this, &SonySMC::notificationHandlerGated), newService, notifier);
     return true;
 }
 
-void AsusSMC::dispatchMessageGated(int *message, void *data) {
+void SonySMC::dispatchMessageGated(int *message, void *data) {
     OSCollectionIterator *i = OSCollectionIterator::withCollection(_notificationServices);
 
     if (i != NULL) {
@@ -788,15 +788,15 @@ void AsusSMC::dispatchMessageGated(int *message, void *data) {
     }
 }
 
-void AsusSMC::dispatchMessage(int message, void *data) {
-    command_gate->runAction(OSMemberFunctionCast(IOCommandGate::Action, this, &AsusSMC::dispatchMessageGated), &message, data);
+void SonySMC::dispatchMessage(int message, void *data) {
+    command_gate->runAction(OSMemberFunctionCast(IOCommandGate::Action, this, &SonySMC::dispatchMessageGated), &message, data);
 }
 
 #pragma mark -
 #pragma mark VirtualSMC plugin - Ported from SMCLightSensor
 #pragma mark -
 
-void AsusSMC::registerVSMC() {
+void SonySMC::registerVSMC() {
     vsmcNotifier = VirtualSMCAPI::registerHandler(vsmcNotificationHandler, this);
 
     ALSSensor sensor {ALSSensor::Type::Unknown7, true, 6, false};
@@ -837,17 +837,17 @@ void AsusSMC::registerVSMC() {
         SMC_KEY_ATTRIBUTE_READ | SMC_KEY_ATTRIBUTE_WRITE | SMC_KEY_ATTRIBUTE_FUNCTION));
 }
 
-bool AsusSMC::vsmcNotificationHandler(void *sensors, void *refCon, IOService *vsmc, IONotifier *notifier) {
+bool SonySMC::vsmcNotificationHandler(void *sensors, void *refCon, IOService *vsmc, IONotifier *notifier) {
     if (sensors && vsmc) {
         DBGLOG("alsd", "got vsmc notification");
-        auto self = static_cast<AsusSMC *>(sensors);
+        auto self = static_cast<SonySMC *>(sensors);
         auto ret = vsmc->callPlatformFunction(VirtualSMCAPI::SubmitPlugin, true, sensors, &self->vsmcPlugin, nullptr, nullptr);
         if (ret == kIOReturnSuccess) {
             DBGLOG("alsd", "Submitted plugin");
 
             self->workloop = self->getWorkLoop();
             self->poller = IOTimerEventSource::timerEventSource(self, [](OSObject *object, IOTimerEventSource *sender) {
-                auto ls = OSDynamicCast(AsusSMC, object);
+                auto ls = OSDynamicCast(SonySMC, object);
                 if (ls) ls->refreshSensor(true);
             });
 
@@ -879,7 +879,7 @@ bool AsusSMC::vsmcNotificationHandler(void *sensors, void *refCon, IOService *vs
     return false;
 }
 
-bool AsusSMC::refreshSensor(bool post) {
+bool SonySMC::refreshSensor(bool post) {
     uint32_t lux = 0;
     auto ret = atkDevice->evaluateInteger("ALSS", &lux);
     if (ret != kIOReturnSuccess)
@@ -901,7 +901,7 @@ EXPORT extern "C" kern_return_t ADDPR(kern_start)(kmod_info_t *, void *) {
     // Report success but actually do not start and let I/O Kit unload us.
     // This works better and increases boot speed in some cases.
     PE_parse_boot_argn("liludelay", &ADDPR(debugPrintDelay), sizeof(ADDPR(debugPrintDelay)));
-    ADDPR(debugEnabled) = checkKernelArgument("-asussmcdbg");
+    ADDPR(debugEnabled) = checkKernelArgument("-sonysmcdbg");
     return KERN_SUCCESS;
 }
 

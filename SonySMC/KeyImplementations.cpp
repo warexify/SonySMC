@@ -1,6 +1,6 @@
 //
 //  KeyImplementations.cpp
-//  AsusSMC
+//  SonySMC
 //
 //  Copyright © 2018-2019 Le Bao Hiep. All rights reserved.
 //
@@ -43,7 +43,7 @@ SMC_RESULT SMCKBrdBLightValue::update(const SMC_DATA *src)  {
 
     OSCollectionIterator *i = OSCollectionIterator::withCollection(_hidDrivers);
     if (i != NULL) {
-        while (AsusHIDDriver *hid = OSDynamicCast(AsusHIDDriver, i->getNextObject()))
+        while (SonyHIDDriver *hid = OSDynamicCast(SonyHIDDriver, i->getNextObject()))
             hid->setKeyboardBacklight(tval);
         i->release();
     }

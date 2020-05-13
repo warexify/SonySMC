@@ -8,10 +8,10 @@
 #  This script is supposed to quickly bootstrap Lilu/VirtualSMC SDK for plugin building.
 #
 #  Latest version available at:
-#  https://raw.githubusercontent.com/hieplpvip/AsusSMC/master/Scripts/bootstrap.sh
+#  https://raw.githubusercontent.com/warexify/SonySMC/master/Scripts/bootstrap.sh
 #
 #  Example usage:
-#  src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/hieplpvip/AsusSMC/master/Scripts/bootstrap.sh) && eval "$src" || exit 1
+#  src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/warexify/SonySMC/master/Scripts/bootstrap.sh) && eval "$src" || exit 1
 #
 
 SDK_PATH="Lilu.kext"

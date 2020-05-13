@@ -1,11 +1,11 @@
 //
 //  main.m
-//  AsusSMCDaemon
+//  SonySMCDaemon
 //
 //  Copyright © 2018-2019 Le Bao Hiep. All rights reserved.
 //
 
-#define AsusSMCEventCode 0x8102
+#define SonySMCEventCode 0x8102
 
 #import <Cocoa/Cocoa.h>
 #import <CoreWLAN/CoreWLAN.h>
@@ -38,7 +38,7 @@ enum {
     kevTouchpad = 4,
 };
 
-struct AsusSMCMessage {
+struct SonySMCMessage {
     int type;
     int x;
     int y;
@@ -164,7 +164,7 @@ int main(int argc, const char *argv[]) {
         struct kev_vendor_code vendorCode = {0};
 
         //set vendor name string
-        strncpy(vendorCode.vendor_string, "com.hieplpvip", KEV_VENDOR_CODE_MAX_STR_LEN);
+        strncpy(vendorCode.vendor_string, "org.warexify", KEV_VENDOR_CODE_MAX_STR_LEN);
 
         //get vendor name -> vendor code mapping
         // ->vendor id, saved in 'vendorCode' variable
@@ -191,9 +191,9 @@ int main(int argc, const char *argv[]) {
 
         //message from kext
         // ->size is cumulation of header, struct, and max length of a proc path
-        char kextMsg[KEV_MSG_HEADER_SIZE + sizeof(struct AsusSMCMessage)] = {0};
+        char kextMsg[KEV_MSG_HEADER_SIZE + sizeof(struct SonySMCMessage)] = {0};
 
-        struct AsusSMCMessage *message = NULL;
+        struct SonySMCMessage *message = NULL;
 
         while (YES) {
             //printf("listening...\n");
@@ -210,7 +210,7 @@ int main(int argc, const char *argv[]) {
             kernEventMsg = (struct kern_event_msg*)kextMsg;
 
             //only care about 'process began' events
-            if (AsusSMCEventCode != kernEventMsg->event_code) {
+            if (SonySMCEventCode != kernEventMsg->event_code) {
                 //skip
                 continue;
             }
@@ -219,7 +219,7 @@ int main(int argc, const char *argv[]) {
 
             //typecast custom data
             // ->begins right after header
-            message = (struct AsusSMCMessage*)&kernEventMsg->event_data[0];
+            message = (struct SonySMCMessage*)&kernEventMsg->event_data[0];
 
             printf("type:%d x:%d y:%d\n", message->type, message->x, message->y);
 

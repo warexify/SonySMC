@@ -11,8 +11,8 @@
 		4C3236382158FFBE00700256 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FE6892156A3610074AD08 /* libkmod.a */; };
 		4C4FCB282326880C0010505E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FCB272326880C0010505E /* CoreServices.framework */; };
 		4C4FCB2A232688390010505E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FCB29232688390010505E /* AppKit.framework */; };
-		4C4FE6252156A1690074AD08 /* AsusSMC.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4C4FE6242156A1690074AD08 /* AsusSMC.hpp */; };
-		4C4FE6272156A1690074AD08 /* AsusSMC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE6262156A1690074AD08 /* AsusSMC.cpp */; };
+		4C4FE6252156A1690074AD08 /* SonySMC.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4C4FE6242156A1690074AD08 /* SonySMC.hpp */; };
+		4C4FE6272156A1690074AD08 /* SonySMC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE6262156A1690074AD08 /* SonySMC.cpp */; };
 		4C4FE6A02156A3AD0074AD08 /* KernEventServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE69E2156A3AD0074AD08 /* KernEventServer.cpp */; };
 		4C4FE6A12156A3AD0074AD08 /* KernEventServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4C4FE69F2156A3AD0074AD08 /* KernEventServer.hpp */; };
 		4C4FE6A62156A4340074AD08 /* VirtualHIDKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE6A32156A4340074AD08 /* VirtualHIDKeyboard.cpp */; };
@@ -23,9 +23,9 @@
 		4C4FE6BD2156A4FB0074AD08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE6BB2156A4FB0074AD08 /* main.m */; };
 		4C4FE6C02156A5820074AD08 /* KeyImplementations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FE6BE2156A5820074AD08 /* KeyImplementations.cpp */; };
 		4C4FE6C12156A5820074AD08 /* KeyImplementations.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4C4FE6BF2156A5820074AD08 /* KeyImplementations.hpp */; };
-		4CAE3C5322C43E5600FCA35D /* AsusHIDDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CAE3C5122C43E5600FCA35D /* AsusHIDDriver.cpp */; };
-		4CAE3C5422C43E5600FCA35D /* AsusHIDDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4CAE3C5222C43E5600FCA35D /* AsusHIDDriver.hpp */; };
-		4CC5A8C2244611E600AB526E /* com.hieplpvip.AsusSMCDaemon.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C4FE6BC2156A4FB0074AD08 /* com.hieplpvip.AsusSMCDaemon.plist */; };
+		4CAE3C5322C43E5600FCA35D /* SonyHIDDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CAE3C5122C43E5600FCA35D /* SonyHIDDriver.cpp */; };
+		4CAE3C5422C43E5600FCA35D /* SonyHIDDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4CAE3C5222C43E5600FCA35D /* SonyHIDDriver.hpp */; };
+		4CC5A8C2244611E600AB526E /* org.warexify.SonySMCDaemon.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C4FE6BC2156A4FB0074AD08 /* org.warexify.SonySMCDaemon.plist */; };
 		4CC5A8C3244611EA00AB526E /* install_daemon.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C32364A2159051A00700256 /* install_daemon.sh */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,7 @@
 			containerPortal = 4C4FE6182156A1690074AD08 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4C4FE6AC2156A4730074AD08;
-			remoteInfo = AsusSMCDaemon;
+			remoteInfo = SonySMCDaemon;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,7 +55,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				4CC5A8C2244611E600AB526E /* com.hieplpvip.AsusSMCDaemon.plist in CopyFiles */,
+				4CC5A8C2244611E600AB526E /* org.warexify.SonySMCDaemon.plist in CopyFiles */,
 				4CC5A8C3244611EA00AB526E /* install_daemon.sh in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,9 +68,9 @@
 		4C32364A2159051A00700256 /* install_daemon.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_daemon.sh; sourceTree = "<group>"; };
 		4C4FCB272326880C0010505E /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		4C4FCB29232688390010505E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		4C4FE6212156A1690074AD08 /* AsusSMC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsusSMC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C4FE6242156A1690074AD08 /* AsusSMC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AsusSMC.hpp; sourceTree = "<group>"; };
-		4C4FE6262156A1690074AD08 /* AsusSMC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AsusSMC.cpp; sourceTree = "<group>"; };
+		4C4FE6212156A1690074AD08 /* SonySMC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonySMC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4FE6242156A1690074AD08 /* SonySMC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SonySMC.hpp; sourceTree = "<group>"; };
+		4C4FE6262156A1690074AD08 /* SonySMC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SonySMC.cpp; sourceTree = "<group>"; };
 		4C4FE6282156A1690074AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C4FE6672156A3610074AD08 /* kern_config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_config.hpp; sourceTree = "<group>"; };
 		4C4FE6682156A3610074AD08 /* kern_time.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_time.hpp; sourceTree = "<group>"; };
@@ -125,18 +125,18 @@
 		4C4FE6A32156A4340074AD08 /* VirtualHIDKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualHIDKeyboard.cpp; sourceTree = "<group>"; };
 		4C4FE6A42156A4340074AD08 /* VirtualHIDKeyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VirtualHIDKeyboard.hpp; sourceTree = "<group>"; };
 		4C4FE6A52156A4340074AD08 /* HIDReport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HIDReport.hpp; sourceTree = "<group>"; };
-		4C4FE6AD2156A4730074AD08 /* AsusSMCDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AsusSMCDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4FE6AD2156A4730074AD08 /* SonySMCDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SonySMCDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4FE6B52156A4A20074AD08 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		4C4FE6B72156A4A70074AD08 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		4C4FE6B92156A4FB0074AD08 /* OSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSD.h; sourceTree = "<group>"; };
 		4C4FE6BA2156A4FB0074AD08 /* BezelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelServices.h; sourceTree = "<group>"; };
 		4C4FE6BB2156A4FB0074AD08 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4C4FE6BC2156A4FB0074AD08 /* com.hieplpvip.AsusSMCDaemon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.hieplpvip.AsusSMCDaemon.plist; sourceTree = "<group>"; };
+		4C4FE6BC2156A4FB0074AD08 /* org.warexify.SonySMCDaemon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = org.warexify.SonySMCDaemon.plist; sourceTree = "<group>"; };
 		4C4FE6BE2156A5820074AD08 /* KeyImplementations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyImplementations.cpp; sourceTree = "<group>"; };
 		4C4FE6BF2156A5820074AD08 /* KeyImplementations.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyImplementations.hpp; sourceTree = "<group>"; };
 		4C4FE6C22156AA810074AD08 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4CAE3C5122C43E5600FCA35D /* AsusHIDDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AsusHIDDriver.cpp; sourceTree = "<group>"; };
-		4CAE3C5222C43E5600FCA35D /* AsusHIDDriver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AsusHIDDriver.hpp; sourceTree = "<group>"; };
+		4CAE3C5122C43E5600FCA35D /* SonyHIDDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SonyHIDDriver.cpp; sourceTree = "<group>"; };
+		4CAE3C5222C43E5600FCA35D /* SonyHIDDriver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SonyHIDDriver.hpp; sourceTree = "<group>"; };
 		4CDDD8C822E899F700CC38F4 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,9 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				4CE3969E22CCAB5C00693C33 /* Global */,
-				4C4FE6232156A1690074AD08 /* AsusSMC */,
-				4C4FE6AE2156A4730074AD08 /* AsusSMCDaemon */,
-				4CAE3C5022C43D2B00FCA35D /* AsusHID */,
+				4C4FE6232156A1690074AD08 /* SonySMC */,
+				4C4FE6AE2156A4730074AD08 /* SonySMCDaemon */,
+				4CAE3C5022C43D2B00FCA35D /* SonyHID */,
 				4C4FE69D2156A3970074AD08 /* KernEventServer */,
 				4C4FE6A22156A4270074AD08 /* VirtualHIDKeyboard */,
 				4C4FE62E2156A2980074AD08 /* SDK */,
@@ -185,21 +185,21 @@
 		4C4FE6222156A1690074AD08 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C4FE6212156A1690074AD08 /* AsusSMC.kext */,
-				4C4FE6AD2156A4730074AD08 /* AsusSMCDaemon */,
+				4C4FE6212156A1690074AD08 /* SonySMC.kext */,
+				4C4FE6AD2156A4730074AD08 /* SonySMCDaemon */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C4FE6232156A1690074AD08 /* AsusSMC */ = {
+		4C4FE6232156A1690074AD08 /* SonySMC */ = {
 			isa = PBXGroup;
 			children = (
-				4C4FE6262156A1690074AD08 /* AsusSMC.cpp */,
-				4C4FE6242156A1690074AD08 /* AsusSMC.hpp */,
+				4C4FE6262156A1690074AD08 /* SonySMC.cpp */,
+				4C4FE6242156A1690074AD08 /* SonySMC.hpp */,
 				4C4FE6BE2156A5820074AD08 /* KeyImplementations.cpp */,
 				4C4FE6BF2156A5820074AD08 /* KeyImplementations.hpp */,
 			);
-			path = AsusSMC;
+			path = SonySMC;
 			sourceTree = "<group>";
 		};
 		4C4FE62E2156A2980074AD08 /* SDK */ = {
@@ -335,16 +335,16 @@
 			path = VirtualHIDKeyboard;
 			sourceTree = "<group>";
 		};
-		4C4FE6AE2156A4730074AD08 /* AsusSMCDaemon */ = {
+		4C4FE6AE2156A4730074AD08 /* SonySMCDaemon */ = {
 			isa = PBXGroup;
 			children = (
 				4C4FE6BA2156A4FB0074AD08 /* BezelServices.h */,
-				4C4FE6BC2156A4FB0074AD08 /* com.hieplpvip.AsusSMCDaemon.plist */,
+				4C4FE6BC2156A4FB0074AD08 /* org.warexify.SonySMCDaemon.plist */,
 				4C32364A2159051A00700256 /* install_daemon.sh */,
 				4C4FE6BB2156A4FB0074AD08 /* main.m */,
 				4C4FE6B92156A4FB0074AD08 /* OSD.h */,
 			);
-			path = AsusSMCDaemon;
+			path = SonySMCDaemon;
 			sourceTree = "<group>";
 		};
 		4C4FE6B42156A4A20074AD08 /* Frameworks */ = {
@@ -358,13 +358,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4CAE3C5022C43D2B00FCA35D /* AsusHID */ = {
+		4CAE3C5022C43D2B00FCA35D /* SonyHID */ = {
 			isa = PBXGroup;
 			children = (
-				4CAE3C5122C43E5600FCA35D /* AsusHIDDriver.cpp */,
-				4CAE3C5222C43E5600FCA35D /* AsusHIDDriver.hpp */,
+				4CAE3C5122C43E5600FCA35D /* SonyHIDDriver.cpp */,
+				4CAE3C5222C43E5600FCA35D /* SonyHIDDriver.hpp */,
 			);
-			path = AsusHID;
+			path = SonyHID;
 			sourceTree = "<group>";
 		};
 		4CE3969E22CCAB5C00693C33 /* Global */ = {
@@ -382,11 +382,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAE3C5422C43E5600FCA35D /* AsusHIDDriver.hpp in Headers */,
+				4CAE3C5422C43E5600FCA35D /* SonyHIDDriver.hpp in Headers */,
 				4C4FE6A82156A4340074AD08 /* HIDReport.hpp in Headers */,
 				4C4FE6A12156A3AD0074AD08 /* KernEventServer.hpp in Headers */,
 				4C17428122C85E6E00469B7E /* HIDUsageTables.h in Headers */,
-				4C4FE6252156A1690074AD08 /* AsusSMC.hpp in Headers */,
+				4C4FE6252156A1690074AD08 /* SonySMC.hpp in Headers */,
 				4C4FE6C12156A5820074AD08 /* KeyImplementations.hpp in Headers */,
 				4C4FE6A72156A4340074AD08 /* VirtualHIDKeyboard.hpp in Headers */,
 			);
@@ -395,9 +395,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4C4FE6202156A1690074AD08 /* AsusSMC */ = {
+		4C4FE6202156A1690074AD08 /* SonySMC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C4FE62B2156A1690074AD08 /* Build configuration list for PBXNativeTarget "AsusSMC" */;
+			buildConfigurationList = 4C4FE62B2156A1690074AD08 /* Build configuration list for PBXNativeTarget "SonySMC" */;
 			buildPhases = (
 				4C4FE61C2156A1690074AD08 /* Headers */,
 				4C4FE61D2156A1690074AD08 /* Sources */,
@@ -411,14 +411,14 @@
 			dependencies = (
 				4C8C666324460F2D00D694EB /* PBXTargetDependency */,
 			);
-			name = AsusSMC;
-			productName = AsusSMC;
-			productReference = 4C4FE6212156A1690074AD08 /* AsusSMC.kext */;
+			name = SonySMC;
+			productName = SonySMC;
+			productReference = 4C4FE6212156A1690074AD08 /* SonySMC.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
-		4C4FE6AC2156A4730074AD08 /* AsusSMCDaemon */ = {
+		4C4FE6AC2156A4730074AD08 /* SonySMCDaemon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C4FE6B12156A4730074AD08 /* Build configuration list for PBXNativeTarget "AsusSMCDaemon" */;
+			buildConfigurationList = 4C4FE6B12156A4730074AD08 /* Build configuration list for PBXNativeTarget "SonySMCDaemon" */;
 			buildPhases = (
 				4C4FE6A92156A4730074AD08 /* Sources */,
 				4C4FE6AA2156A4730074AD08 /* Frameworks */,
@@ -428,9 +428,9 @@
 			);
 			dependencies = (
 			);
-			name = AsusSMCDaemon;
-			productName = AsusSMCDaemon;
-			productReference = 4C4FE6AD2156A4730074AD08 /* AsusSMCDaemon */;
+			name = SonySMCDaemon;
+			productName = SonySMCDaemon;
+			productReference = 4C4FE6AD2156A4730074AD08 /* SonySMCDaemon */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -450,7 +450,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C4FE61B2156A1690074AD08 /* Build configuration list for PBXProject "AsusSMC" */;
+			buildConfigurationList = 4C4FE61B2156A1690074AD08 /* Build configuration list for PBXProject "SonySMC" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -463,8 +463,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C4FE6202156A1690074AD08 /* AsusSMC */,
-				4C4FE6AC2156A4730074AD08 /* AsusSMCDaemon */,
+				4C4FE6202156A1690074AD08 /* SonySMC */,
+				4C4FE6AC2156A4730074AD08 /* SonySMCDaemon */,
 			);
 		};
 /* End PBXProject section */
@@ -505,9 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C4FE6272156A1690074AD08 /* AsusSMC.cpp in Sources */,
+				4C4FE6272156A1690074AD08 /* SonySMC.cpp in Sources */,
 				4C4FE6C02156A5820074AD08 /* KeyImplementations.cpp in Sources */,
-				4CAE3C5322C43E5600FCA35D /* AsusHIDDriver.cpp in Sources */,
+				4CAE3C5322C43E5600FCA35D /* SonyHIDDriver.cpp in Sources */,
 				4C4FE6A62156A4340074AD08 /* VirtualHIDKeyboard.cpp in Sources */,
 				4C4FE6A02156A3AD0074AD08 /* KernEventServer.cpp in Sources */,
 			);
@@ -526,7 +526,7 @@
 /* Begin PBXTargetDependency section */
 		4C8C666324460F2D00D694EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4C4FE6AC2156A4730074AD08 /* AsusSMCDaemon */;
+			target = 4C4FE6AC2156A4730074AD08 /* SonySMCDaemon */;
 			targetProxy = 4C8C666224460F2D00D694EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -585,7 +585,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 			};
 			name = Debug;
 		};
@@ -635,7 +635,7 @@
 				MODULE_VERSION = 1.2.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 			};
 			name = Release;
 		};
@@ -659,12 +659,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lilu.kext/Contents/Resources/Library",
 				);
-				MODULE_NAME = com.hieplpvip.AsusSMC;
+				MODULE_NAME = org.warexify.SonySMC;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
 				MODULE_VERSION = 1.2.2;
 				OTHER_CPLUSPLUSFLAGS = "-Wno-inconsistent-missing-override";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hieplpvip.AsusSMC;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warexify.SonySMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
 			};
@@ -690,12 +690,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lilu.kext/Contents/Resources/Library",
 				);
-				MODULE_NAME = com.hieplpvip.AsusSMC;
+				MODULE_NAME = org.warexify.SonySMC;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
 				MODULE_VERSION = 1.2.2;
 				OTHER_CPLUSPLUSFLAGS = "-Wno-inconsistent-missing-override";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hieplpvip.AsusSMC;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warexify.SonySMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
 			};
@@ -705,7 +705,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				INFOPLIST_FILE = AsusSMCDaemon/com.hieplpvip.AsusSMCDaemon.plist;
+				INFOPLIST_FILE = SonySMCDaemon/org.warexify.SonySMCDaemon.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -714,7 +714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				INFOPLIST_FILE = AsusSMCDaemon/com.hieplpvip.AsusSMCDaemon.plist;
+				INFOPLIST_FILE = SonySMCDaemon/org.warexify.SonySMCDaemon.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -722,7 +722,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C4FE61B2156A1690074AD08 /* Build configuration list for PBXProject "AsusSMC" */ = {
+		4C4FE61B2156A1690074AD08 /* Build configuration list for PBXProject "SonySMC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4FE6292156A1690074AD08 /* Debug */,
@@ -731,7 +731,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C4FE62B2156A1690074AD08 /* Build configuration list for PBXNativeTarget "AsusSMC" */ = {
+		4C4FE62B2156A1690074AD08 /* Build configuration list for PBXNativeTarget "SonySMC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4FE62C2156A1690074AD08 /* Debug */,
@@ -740,7 +740,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C4FE6B12156A4730074AD08 /* Build configuration list for PBXNativeTarget "AsusSMCDaemon" */ = {
+		4C4FE6B12156A4730074AD08 /* Build configuration list for PBXNativeTarget "SonySMCDaemon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4FE6B22156A4730074AD08 /* Debug */,

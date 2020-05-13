@@ -1,6 +1,6 @@
 //
 //  HIDUsageTables.h
-//  AsusSMC
+//  SonySMC
 //
 //  Copyright © 2019 Le Bao Hiep. All rights reserved.
 //
@@ -11,7 +11,7 @@
 /* Usage Pages */
 enum {
     kHIDPage_AppleVendorTopCase = 0x00ff,
-    kHIDPage_AsusVendor         = 0xff31,
+    kHIDPage_SonyVendor         = 0xff31,
     kHIDPage_MicrosoftVendor    = 0xff00
 };
 
@@ -29,23 +29,23 @@ enum
     kHIDUsage_AV_TopCase_Reserved_MouseData    = 0x00c0
 };
 
-/* AsusVendor Page (0xff31) */
+/* SonyVendor Page (0xff31) */
 enum {
-    kHIDUsage_AsusVendor_BrightnessDown      = 0x10,
-    kHIDUsage_AsusVendor_BrightnessUp        = 0x20,
-    kHIDUsage_AsusVendor_DisplayOff          = 0x35,
-    kHIDUsage_AsusVendor_ROG                 = 0x38,
-    kHIDUsage_AsusVendor_Power4Gear          = 0x5c, /* Fn+Space Power4Gear Hybrid */
-    kHIDUsage_AsusVendor_TouchpadToggle      = 0x6b,
-    kHIDUsage_AsusVendor_Sleep               = 0x6c,
-    kHIDUsage_AsusVendor_MicMute             = 0x7c,
-    kHIDUsage_AsusVendor_Camera              = 0x82,
-    kHIDUsage_AsusVendor_RFKill              = 0x88,
-    kHIDUsage_AsusVendor_Fan                 = 0x99, /* Fn+F5 "fan" symbol on FX503VD */
-    kHIDUsage_AsusVendor_Calc                = 0xb5,
-    kHIDUsage_AsusVendor_Splendid            = 0xba, /* Fn+C ASUS Splendid */
-    kHIDUsage_AsusVendor_IlluminationUp      = 0xc4,
-    kHIDUsage_AsusVendor_IlluminationDown    = 0xc5
+    kHIDUsage_SonyVendor_BrightnessDown      = 0x10,
+    kHIDUsage_SonyVendor_BrightnessUp        = 0x20,
+    kHIDUsage_SonyVendor_DisplayOff          = 0x35,
+    kHIDUsage_SonyVendor_ROG                 = 0x38,
+    kHIDUsage_SonyVendor_Power4Gear          = 0x5c, /* Fn+Space Power4Gear Hybrid */
+    kHIDUsage_SonyVendor_TouchpadToggle      = 0x6b,
+    kHIDUsage_SonyVendor_Sleep               = 0x6c,
+    kHIDUsage_SonyVendor_MicMute             = 0x7c,
+    kHIDUsage_SonyVendor_Camera              = 0x82,
+    kHIDUsage_SonyVendor_RFKill              = 0x88,
+    kHIDUsage_SonyVendor_Fan                 = 0x99, /* Fn+F5 "fan" symbol on FX503VD */
+    kHIDUsage_SonyVendor_Calc                = 0xb5,
+    kHIDUsage_SonyVendor_Splendid            = 0xba, /* Fn+C ASUS Splendid */
+    kHIDUsage_SonyVendor_IlluminationUp      = 0xc4,
+    kHIDUsage_SonyVendor_IlluminationDown    = 0xc5
 };
 
 /* MicrosoftVendor Page (0xff31) */
